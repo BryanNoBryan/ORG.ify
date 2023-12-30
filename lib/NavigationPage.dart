@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:midyear/MyNavigator.dart';
+
+import 'UserState.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({
@@ -18,45 +21,49 @@ class _NavigationPageState extends State<NavigationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('amogus'),
+        title: const Text('amogus inc.'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.account_circle, size: 40),
+            onPressed: () {
+              MyNavigator.loginScreen();
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         child: widget.child,
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: widget.child.currentIndex,
+        currentIndex: MyNavigator.navigationbarIndex,
         onTap: (index) {
-          widget.child.goBranch(
-            index,
-            initialLocation: index == widget.child.currentIndex,
-          );
+          switch (index) {
+            case 0:
+              MyNavigator.goHome(initial: index == widget.child.currentIndex);
+              break;
+            case 1:
+              MyNavigator.goEvent(initial: index == widget.child.currentIndex);
+              break;
+            case 2:
+              MyNavigator.goProfile(
+                  initial: index == widget.child.currentIndex);
+              break;
+          }
           setState(() {});
         },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'home',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'search',
+            icon: Icon(Icons.event),
+            label: 'Events',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'settings',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'settings',
+            icon: Icon(Icons.person_outlined),
+            label: 'Profile',
           ),
         ],
       ),

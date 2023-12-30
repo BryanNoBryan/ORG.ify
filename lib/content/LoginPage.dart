@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:midyear/MyNavigator.dart';
+
+import '../UserState.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,11 +14,36 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
+        body: Column(
+      children: [
+        SizedBox(
+          height: 100,
+        ),
+        Center(
             child: Text(
-      'LoginPage',
-      style: TextStyle(fontSize: 30),
-    )));
+          'LoginPage',
+          style: TextStyle(fontSize: 30),
+        )),
+        TextButton(
+            onPressed: () {
+              UserState.perm = 1;
+              MyNavigator.goHome();
+            },
+            child: Text(
+              'Admin',
+              style: TextStyle(fontSize: 30),
+            )),
+        TextButton(
+            onPressed: () {
+              UserState.perm = 0;
+              MyNavigator.goHome();
+            },
+            child: Text(
+              'User',
+              style: TextStyle(fontSize: 30),
+            )),
+      ],
+    ));
   }
 }
 

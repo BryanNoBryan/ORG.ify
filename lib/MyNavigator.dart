@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:midyear/NavigationLoginPage.dart';
 
 import 'NavigationPage.dart';
+import 'UserState.dart';
 import 'content/Profile.dart';
 import 'content/admin/AdminEvent.dart';
 import 'content/admin/AdminHome.dart';
@@ -17,7 +21,13 @@ class MyNavigator {
     return _instance;
   }
 
+  static late StatefulNavigationShell _navigationShell;
+  static StatefulNavigationShell get shell => _navigationShell;
+
   static late final GoRouter router;
+
+  static late int _navigationbarIndex;
+  static int get navigationbarIndex => _navigationbarIndex;
 
   static final GlobalKey<NavigatorState> parentNavigatorKey =
       GlobalKey<NavigatorState>();
@@ -118,10 +128,11 @@ class MyNavigator {
           GoRouterState state,
           StatefulNavigationShell navigationShell,
         ) {
+          _navigationShell = navigationShell;
           return getPage(
-            child: NavigationPage(
-              child: navigationShell,
-            ),
+            child: (navigationShell.currentIndex == 0)
+                ? NavigationLoginPage(child: navigationShell)
+                : NavigationPage(child: navigationShell),
             state: state,
           );
         },
@@ -142,5 +153,43 @@ class MyNavigator {
       key: state.pageKey,
       child: child,
     );
+  }
+
+  static void loginScreen() {
+    UserState.signOut();
+    _navigationShell.goBranch(0, initialLocation: true);
+  }
+
+  static void goHome({bool? initial}) {
+    log('homed');
+    log(UserState.perm.toString());
+    _navigationbarIndex = 0;
+    switch (UserState.perm) {
+      case 1:
+        log('admined');
+        _navigationShell.goBranch(1, initialLocation: initial ?? false);
+        break;
+      case 0:
+        log('usered');
+        _navigationShell.goBranch(2, initialLocation: initial ?? false);
+        break;
+    }
+  }
+
+  static void goEvent({bool? initial}) {
+    _navigationbarIndex = 1;
+    switch (UserState.perm) {
+      case 1:
+        _navigationShell.goBranch(3, initialLocation: initial ?? false);
+        break;
+      case 0:
+        _navigationShell.goBranch(4, initialLocation: initial ?? false);
+        break;
+    }
+  }
+
+  static void goProfile({bool? initial}) {
+    _navigationbarIndex = 2;
+    _navigationShell.goBranch(5, initialLocation: initial ?? false);
   }
 }
