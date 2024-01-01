@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:midyear/MyNavigator.dart';
+import 'package:midyear/navigation/MyNavigator.dart';
 
-import '../UserState.dart';
+import '../navigation/UserState.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,40 +11,125 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        SizedBox(
-          height: 100,
+        body: GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/fractal.jpg"),
+            fit: BoxFit.cover,
+          ),
         ),
-        Center(
-            child: Text(
-          'LoginPage',
-          style: TextStyle(fontSize: 30),
-        )),
-        TextButton(
-            onPressed: () {
-              UserState.perm = 1;
-              MyNavigator.goHome();
-            },
-            child: Text(
-              'Admin',
-              style: TextStyle(fontSize: 30),
+        child: ListView(
+          children: [
+            SizedBox(
+              height: 100,
+            ),
+            Center(
+                child: Container(
+              padding: const EdgeInsets.all(50),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.white,
+              ),
+              child: const Text(
+                'ORG.ify',
+                style: TextStyle(fontSize: 50),
+              ),
             )),
-        TextButton(
-            onPressed: () {
-              UserState.perm = 0;
-              MyNavigator.goHome();
-            },
-            child: Text(
-              'User',
-              style: TextStyle(fontSize: 30),
-            )),
-      ],
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: TextField(
+                controller: username,
+                cursorColor: Colors.black,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsetsDirectional.only(
+                      start: 30, top: 20, bottom: 20),
+                  hintStyle: const TextStyle(color: Colors.white),
+                  hintText: "Username",
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 93, 152, 254),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 32.0, color: Colors.lightBlue.shade50),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: TextField(
+                controller: password,
+                cursorColor: Colors.black,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsetsDirectional.only(
+                      start: 30, top: 20, bottom: 20),
+                  hintStyle: const TextStyle(color: Colors.white),
+                  hintText: "Password",
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 93, 152, 254),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 32.0, color: Colors.lightBlue.shade50),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                loginAttempt();
+                setState(() {});
+              },
+              child: Text('Log In', style: TextStyle(fontSize: 30)),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                backgroundColor: Colors.lightBlue.shade50,
+              ),
+            ),
+            TextButton(
+                onPressed: () {
+                  UserState.perm = 1;
+                  MyNavigator.goHome();
+                },
+                child: const Text(
+                  'Admin',
+                  style: TextStyle(fontSize: 30),
+                )),
+            TextButton(
+                onPressed: () {
+                  UserState.perm = 0;
+                  MyNavigator.goHome();
+                },
+                child: const Text(
+                  'User',
+                  style: TextStyle(fontSize: 30),
+                )),
+            SizedBox(),
+          ],
+        ),
+      ),
     ));
   }
+
+  void loginAttempt() {}
 }
 
 

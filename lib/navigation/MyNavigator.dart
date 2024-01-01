@@ -2,16 +2,16 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:midyear/NavigationLoginPage.dart';
 
+import '../content/admin/AdminHome.dart';
+import 'NavigationLoginPage.dart';
 import 'NavigationPage.dart';
 import 'UserState.dart';
-import 'content/Profile.dart';
-import 'content/admin/AdminEvent.dart';
-import 'content/admin/AdminHome.dart';
-import 'content/user/UserEvent.dart';
-import 'content/user/UserHome.dart';
-import 'content/LoginPage.dart';
+import '../content/Profile.dart';
+import '../content/admin/AdminEvent.dart';
+import '../content/user/UserEvent.dart';
+import '../content/user/UserHome.dart';
+import '../content/LoginPage.dart';
 
 class MyNavigator {
   static final MyNavigator _instance = MyNavigator._internal();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:midyear/MyNavigator.dart';
+import 'navigation/MyNavigator.dart';
 
 void main() {
   MyNavigator();
