@@ -2,16 +2,18 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:midyear/content/pages/admin/AdminAnnouncementPage.dart';
+import 'package:midyear/content/pages/user/UserAnnouncementPage.dart';
 
-import '../content/admin/AdminHome.dart';
+import '../content/pages/admin/AdminHome.dart';
 import 'NavigationLoginPage.dart';
 import 'NavigationPage.dart';
 import 'UserState.dart';
-import '../content/Profile.dart';
-import '../content/admin/AdminEvent.dart';
-import '../content/user/UserEvent.dart';
-import '../content/user/UserHome.dart';
-import '../content/LoginPage.dart';
+import '../content/pages/Profile.dart';
+import '../content/pages/admin/AdminEvent.dart';
+import '../content/pages/user/UserEvent.dart';
+import '../content/pages/user/UserHome.dart';
+import '../content/pages/LoginPage.dart';
 
 class MyNavigator {
   static final MyNavigator _instance = MyNavigator._internal();
@@ -57,6 +59,9 @@ class MyNavigator {
   static const String userEventPath = '/userEvent';
   static const String profilePath = '/profile';
 
+  static const String adminAnnouncementPath = '/AdminAnnouncementPage';
+  static const String userAnnouncementPath = '/announcementPage';
+
   MyNavigator._internal() {
     final routes = [
       StatefulShellRoute.indexedStack(
@@ -74,10 +79,19 @@ class MyNavigator {
           ]),
           StatefulShellBranch(navigatorKey: adminHomeNavigatorKey, routes: [
             GoRoute(
-                path: adminHomePath,
+              path: adminHomePath,
+              pageBuilder: (context, GoRouterState state) {
+                return getPage(
+                  child: const AdminHome(),
+                  state: state,
+                );
+              },
+            ),
+            GoRoute(
+                path: adminAnnouncementPath,
                 pageBuilder: (context, GoRouterState state) {
                   return getPage(
-                    child: const AdminHome(),
+                    child: const AdminAnnouncementPage(),
                     state: state,
                   );
                 }),
@@ -88,6 +102,14 @@ class MyNavigator {
                 pageBuilder: (context, GoRouterState state) {
                   return getPage(
                     child: const UserHome(),
+                    state: state,
+                  );
+                }),
+            GoRoute(
+                path: userAnnouncementPath,
+                pageBuilder: (context, GoRouterState state) {
+                  return getPage(
+                    child: const AnnouncementPage(),
                     state: state,
                   );
                 }),

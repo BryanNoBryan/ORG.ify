@@ -20,17 +20,17 @@ class _NavigationPageState extends State<NavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('amogus inc.'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle, size: 40),
-            onPressed: () {
-              MyNavigator.loginScreen();
-            },
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: const Text('amogus inc.'),
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.account_circle, size: 40),
+      //       onPressed: () {
+      //         MyNavigator.loginScreen();
+      //       },
+      //     ),
+      //   ],
+      // ),
       body: SafeArea(
         child: widget.child,
       ),

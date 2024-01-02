@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:midyear/Col.dart';
+import 'package:midyear/FakeData.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
 
-import '../navigation/UserState.dart';
+import '../../navigation/UserState.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,6 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController organization = TextEditingController();
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
 
@@ -34,21 +39,48 @@ class _LoginPageState extends State<LoginPage> {
         ),
         child: ListView(
           children: [
-            SizedBox(
-              height: 100,
+            // const SizedBox(
+            //   height: 100,
+            // ),
+            AnimatedAlign(
+              alignment: Alignment.bottomCenter,
+              curve: Curves.easeInCirc,
+              heightFactor: 2.0,
+              widthFactor: 1.0,
+              duration: Duration(seconds: 3),
+              child: Center(
+                  child: Container(
+                padding: const EdgeInsets.all(50),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.white,
+                ),
+                child: const Text(
+                  'ORG.ify',
+                  style: TextStyle(fontSize: 50),
+                ),
+              )),
             ),
-            Center(
-                child: Container(
-              padding: const EdgeInsets.all(50),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.white,
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: TextField(
+                controller: organization,
+                cursorColor: Colors.black,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsetsDirectional.only(
+                      start: 30, top: 20, bottom: 20),
+                  hintStyle: const TextStyle(color: Colors.white),
+                  hintText: "Organization ID",
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 93, 152, 254),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(width: 32.0, color: Col.lightBlue),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
               ),
-              child: const Text(
-                'ORG.ify',
-                style: TextStyle(fontSize: 50),
-              ),
-            )),
+            ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: TextField(
@@ -63,8 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   filled: true,
                   fillColor: const Color.fromARGB(255, 93, 152, 254),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 32.0, color: Colors.lightBlue.shade50),
+                    borderSide: BorderSide(width: 32.0, color: Col.lightBlue),
                     borderRadius: BorderRadius.circular(50),
                   ),
                 ),
@@ -84,24 +115,27 @@ class _LoginPageState extends State<LoginPage> {
                   filled: true,
                   fillColor: const Color.fromARGB(255, 93, 152, 254),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 32.0, color: Colors.lightBlue.shade50),
+                    borderSide: BorderSide(width: 32.0, color: Col.lightBlue),
                     borderRadius: BorderRadius.circular(50),
                   ),
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                loginAttempt();
-                setState(() {});
-              },
-              child: Text('Log In', style: TextStyle(fontSize: 30)),
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  loginAttempt();
+                  setState(() {});
+                },
+                child: const Text('Log In', style: TextStyle(fontSize: 30)),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  backgroundColor: Col.lightBlue,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 140, vertical: 10),
                 ),
-                backgroundColor: Colors.lightBlue.shade50,
               ),
             ),
             TextButton(
@@ -122,14 +156,31 @@ class _LoginPageState extends State<LoginPage> {
                   'User',
                   style: TextStyle(fontSize: 30),
                 )),
-            SizedBox(),
+            const SizedBox(),
           ],
         ),
       ),
     ));
   }
 
-  void loginAttempt() {}
+  void loginAttempt() {
+    int? perm = FakeData.login(username.text, password.text);
+    log(username.text);
+    log(password.text);
+    log(perm.toString());
+    if (perm != null) {
+      UserState.perm = perm;
+      UserState.organizationID = organization.text;
+      UserState.name = username.text;
+      UserState.pw = password.text;
+      username.text = '';
+      password.text = '';
+      MyNavigator.goHome();
+    } else {
+      username.text = 'Try Again.';
+      password.text = '';
+    }
+  }
 }
 
 

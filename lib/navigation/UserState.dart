@@ -1,12 +1,15 @@
 class UserState {
-  static int _perm = -1;
+  static int perm = -1;
 
-  static int get perm => _perm;
-
-  static set perm(int perm) => _perm = perm;
+  static String organizationID = '';
+  static String name = '';
+  static String pw = '';
 
   static void signOut() {
-    _perm = -1;
+    perm = -1;
+    organizationID = '';
+    name = '';
+    pw = '';
   }
 
   static final Map<int, String> perms = {
