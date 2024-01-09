@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/Col.dart';
 import 'package:midyear/FakeData.dart';
-import 'package:midyear/content/widgets/announcement.dart';
+import 'package:midyear/content/widgets/AnnouncementBox.dart';
+import 'package:midyear/content/widgets/GetAnnouncementsUser.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
 import 'package:midyear/widgetAssets/Headline.dart';
-import 'package:midyear/content/widgets/MyAlertDialog.dart';
+import 'package:midyear/content/widgets/AddAnnnouncementDialog.dart';
 
 class AnnouncementPage extends StatefulWidget {
   const AnnouncementPage({super.key});
@@ -27,48 +28,23 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
+        child: const Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Announcements',
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 30,
                       fontWeight: FontWeight.normal),
                 ),
-                CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Col.lightBlue,
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.add,
-                      color: Colors.black,
-                    ),
-                    onPressed: () async {
-                      await showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) => MyAlertDialog(),
-                      );
-                      setState(() {});
-                    },
-                  ),
-                ),
               ],
             ),
             Expanded(
-              child: ListView.builder(
-                  itemCount: FakeData.announcements.length,
-                  itemBuilder: (context, index) {
-                    return Announcement(
-                      title: FakeData.announcements[index][0],
-                      description: FakeData.announcements[index][1],
-                      onPressed: () => (),
-                    );
-                  }),
+              child: GetAnnouncementsUser(),
             ),
           ],
         ),

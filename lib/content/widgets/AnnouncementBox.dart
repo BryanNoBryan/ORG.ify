@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/Col.dart';
 
-class Announcement extends StatelessWidget {
+class AnnouncementBox extends StatelessWidget {
+  final int id;
   final String title;
   final String description;
   final Function() onPressed;
 
-  const Announcement(
-      {required this.title,
+  const AnnouncementBox(
+      {required this.id,
+      required this.title,
       required this.description,
       required this.onPressed,
       super.key});

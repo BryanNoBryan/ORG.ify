@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/Col.dart';
 import 'package:midyear/FakeData.dart';
-import 'package:midyear/content/widgets/MyAlertDialog.dart';
-import 'package:midyear/content/widgets/announcement.dart';
+import 'package:midyear/content/widgets/GetAnnouncementsAdmin.dart';
+import 'package:midyear/content/widgets/AddAnnnouncementDialog.dart';
+import 'package:midyear/content/widgets/AnnouncementBox.dart';
+import 'package:midyear/database/AnnouncementDB.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
+
+import '../../../database/data/Announcements.dart';
 
 class AdminAnnouncementPage extends StatefulWidget {
   const AdminAnnouncementPage({super.key});
@@ -51,7 +55,8 @@ class _AnnouncementPageState extends State<AdminAnnouncementPage> {
                     onPressed: () async {
                       await showDialog<String>(
                         context: context,
-                        builder: (BuildContext context) => MyAlertDialog(),
+                        builder: (BuildContext context) =>
+                            AddAnnnouncementDialog(),
                       );
                       setState(() {});
                     },
@@ -60,15 +65,7 @@ class _AnnouncementPageState extends State<AdminAnnouncementPage> {
               ],
             ),
             Expanded(
-              child: ListView.builder(
-                  itemCount: FakeData.announcements.length,
-                  itemBuilder: (context, index) {
-                    return Announcement(
-                      title: FakeData.announcements[index][0],
-                      description: FakeData.announcements[index][1],
-                      onPressed: () => (),
-                    );
-                  }),
+              child: GetAnnouncementsAdmin(),
             ),
           ],
         ),

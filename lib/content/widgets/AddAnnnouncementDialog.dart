@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:midyear/FakeData.dart';
+import 'package:midyear/database/AnnouncementDB.dart';
+import 'package:midyear/database/data/Announcements.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
 import 'package:midyear/widgetAssets/Input.dart';
 
-class MyAlertDialog extends StatefulWidget {
-  const MyAlertDialog({Key? key}) : super(key: key);
+class AddAnnnouncementDialog extends StatefulWidget {
+  const AddAnnnouncementDialog({Key? key}) : super(key: key);
 
   @override
-  State<MyAlertDialog> createState() => _MyAlertDialogState();
+  State<AddAnnnouncementDialog> createState() => _AddAnnnouncementDialogState();
 }
 
-class _MyAlertDialogState extends State<MyAlertDialog> {
+class _AddAnnnouncementDialogState extends State<AddAnnnouncementDialog> {
   final primaryColor = const Color(0xff4338CA);
   final accentColor = const Color(0xffffffff);
   final TextEditingController title = TextEditingController();
@@ -24,7 +26,7 @@ class _MyAlertDialogState extends State<MyAlertDialog> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Container(
         width: MediaQuery.of(context).size.width / 1.4,
-        height: 350,
+        height: 400,
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15.0),
@@ -50,8 +52,22 @@ class _MyAlertDialogState extends State<MyAlertDialog> {
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 child: Input(title: 'Title', controller: title)),
             Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(color: primaryColor, spreadRadius: 1),
+                  ],
+                ),
                 margin: EdgeInsets.symmetric(horizontal: 10),
-                child: Input(title: 'description', controller: description)),
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: TextField(
+                    controller: description,
+                    minLines: 4,
+                    maxLines: 8,
+                  ),
+                )),
             const SizedBox(
               height: 3.5,
             ),
@@ -60,9 +76,12 @@ class _MyAlertDialogState extends State<MyAlertDialog> {
               children: [
                 SimpleBtn1(
                     text: "Submit",
-                    onPressed: () {
+                    onPressed: () async {
                       FakeData.announcements
                           .insert(0, [title.text, description.text]);
+                      Announcement ann = Announcement(
+                          title: title.text, description: description.text);
+                      await AnnouncementDB().insertElem(ann);
                       Navigator.of(context).pop();
                     }),
                 SimpleBtn1(

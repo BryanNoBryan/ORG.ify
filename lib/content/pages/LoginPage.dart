@@ -138,24 +138,24 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            TextButton(
-                onPressed: () {
-                  UserState.perm = 1;
-                  MyNavigator.goHome();
-                },
-                child: const Text(
-                  'Admin',
-                  style: TextStyle(fontSize: 30),
-                )),
-            TextButton(
-                onPressed: () {
-                  UserState.perm = 0;
-                  MyNavigator.goHome();
-                },
-                child: const Text(
-                  'User',
-                  style: TextStyle(fontSize: 30),
-                )),
+            // TextButton(
+            //     onPressed: () {
+            //       UserState.perm = 1;
+            //       MyNavigator.goHome();
+            //     },
+            //     child: const Text(
+            //       'Admin',
+            //       style: TextStyle(fontSize: 30),
+            //     )),
+            // TextButton(
+            //     onPressed: () {
+            //       UserState.perm = 0;
+            //       MyNavigator.goHome();
+            //     },
+            //     child: const Text(
+            //       'User',
+            //       style: TextStyle(fontSize: 30),
+            //     )),
             const SizedBox(),
           ],
         ),
@@ -164,9 +164,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void loginAttempt() {
-    int? perm = FakeData.login(username.text, password.text);
+    int? perm = FakeData.login(username.text, password.text, organization.text);
     log(username.text);
     log(password.text);
+    log(organization.text);
     log(perm.toString());
     if (perm != null) {
       UserState.perm = perm;

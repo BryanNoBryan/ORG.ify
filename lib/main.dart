@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:midyear/database/AnnouncementDB.dart';
 import 'navigation/MyNavigator.dart';
 
-void main() {
+void main() async {
   MyNavigator();
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await AnnouncementDB().initDB();
+
   runApp(const MyApp());
 }
 

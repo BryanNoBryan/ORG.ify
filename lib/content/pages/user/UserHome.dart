@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/Col.dart';
 import 'package:midyear/FakeData.dart';
-import 'package:midyear/content/widgets/announcement.dart';
+import 'package:midyear/content/widgets/AnnouncementBox.dart';
+import 'package:midyear/content/widgets/GetAnnouncementsUser.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
 import 'package:midyear/navigation/UserState.dart';
 import 'package:midyear/widgetAssets/Headline.dart';
@@ -36,80 +37,73 @@ class _UserHomeState extends State<UserHome> {
           margin: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Hi ${UserState.name}!',
-                            style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            '${UserState.perms[UserState.perm]}',
-                            style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.grey),
-                          ),
-                        ],
+                      Text(
+                        'Hi ${UserState.name}!',
+                        style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
                       ),
-                      // IconButton(icon: icon,onPressed: iconOnPressed,)
+                      Text(
+                        '${UserState.perms[UserState.perm]}',
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey),
+                      ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    onTap: () => (),
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Col.lightBlue,
-                        ),
-                        child: const Text(
-                          "Mark Attendance",
-                          style: TextStyle(
-                            color: Color(0xff15BE77),
-                            fontWeight: FontWeight.normal,
-                            fontSize: 24,
-                          ),
-                        ),
+                  // IconButton(icon: icon,onPressed: iconOnPressed,)
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              GestureDetector(
+                onTap: () => (),
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Col.lightBlue,
+                    ),
+                    child: const Text(
+                      "Mark Attendance",
+                      style: TextStyle(
+                        color: Color(0xff15BE77),
+                        fontWeight: FontWeight.normal,
+                        fontSize: 24,
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Headline(
-                      title: 'Announcements',
-                      onPressed: () async {
-                        await MyNavigator.router
-                            .push(MyNavigator.userAnnouncementPath);
-                        setState(() {});
-                      }),
-                  const Divider(
-                    thickness: 5,
-                  )
-                ] +
-                List.generate(
-                  3,
-                  (index) => Announcement(
-                    title: FakeData.announcements[index][0],
-                    description: FakeData.announcements[index][1],
-                    onPressed: () => (),
-                  ),
                 ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Headline(
+                  title: 'Announcements',
+                  onPressed: () async {
+                    await MyNavigator.router
+                        .push(MyNavigator.userAnnouncementPath);
+                    setState(() {});
+                  }),
+              const Divider(
+                thickness: 5,
+              ),
+              GetAnnouncementsUser(),
+            ],
           ),
         ),
       ),
