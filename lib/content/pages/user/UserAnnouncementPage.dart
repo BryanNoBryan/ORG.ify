@@ -48,10 +48,13 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
                       Icons.add,
                       color: Colors.black,
                     ),
-                    onPressed: () => showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => MyAlertDialog(),
-                    ),
+                    onPressed: () async {
+                      await showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => MyAlertDialog(),
+                      );
+                      setState(() {});
+                    },
                   ),
                 ),
               ],

@@ -21,6 +21,7 @@ class _AnnouncementPageState extends State<AdminAnnouncementPage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             MyNavigator.router.pop();
+            setState(() {});
           },
         ),
       ),
@@ -47,10 +48,13 @@ class _AnnouncementPageState extends State<AdminAnnouncementPage> {
                       Icons.add,
                       color: Colors.black,
                     ),
-                    onPressed: () => showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => MyAlertDialog(),
-                    ),
+                    onPressed: () async {
+                      await showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => MyAlertDialog(),
+                      );
+                      setState(() {});
+                    },
                   ),
                 ),
               ],

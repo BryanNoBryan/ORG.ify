@@ -92,10 +92,12 @@ class _UserHomeState extends State<UserHome> {
                     height: 20,
                   ),
                   Headline(
-                    title: 'Announcements',
-                    onPressed: () => MyNavigator.router
-                        .push(MyNavigator.userAnnouncementPath),
-                  ),
+                      title: 'Announcements',
+                      onPressed: () async {
+                        await MyNavigator.router
+                            .push(MyNavigator.userAnnouncementPath);
+                        setState(() {});
+                      }),
                   const Divider(
                     thickness: 5,
                   )

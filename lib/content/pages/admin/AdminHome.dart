@@ -94,8 +94,11 @@ class _AdminHomeState extends State<AdminHome> {
                   ),
                   Headline(
                     title: 'Announcements',
-                    onPressed: () => MyNavigator.router
-                        .push(MyNavigator.adminAnnouncementPath),
+                    onPressed: () async {
+                      await MyNavigator.router
+                          .push(MyNavigator.adminAnnouncementPath);
+                      setState(() {});
+                    },
                   ),
                   const Divider(
                     thickness: 5,

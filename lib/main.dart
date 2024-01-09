@@ -27,20 +27,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// final _router = GoRouter(
-//   initialLocation: '/',
-//   routes: [
-//     GoRoute(
-//       name:
-//           'home', // Optional, add name to your routes. Allows you navigate by name instead of path
-//       path: '/',
-//       builder: (context, state) => HomePage(),
-//     ),
-//     GoRoute(
-//       name: 'page2',
-//       path: '/page2',
-//       builder: (context, state) => AdminHome(),
-//     ),
-//   ],
-// );
