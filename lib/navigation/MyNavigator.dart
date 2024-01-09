@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:midyear/content/pages/admin/AdminAnnouncementPage.dart';
 import 'package:midyear/content/pages/user/UserAnnouncementPage.dart';
+import 'package:midyear/content/widgets/ViewAttendance.dart';
 
 import '../content/pages/admin/AdminHome.dart';
 import 'NavigationLoginPage.dart';
@@ -62,6 +63,8 @@ class MyNavigator {
   static const String adminAnnouncementPath = '/AdminAnnouncementPage';
   static const String userAnnouncementPath = '/announcementPage';
 
+  static const String adminViewAttendance = '/AdminViewAttendance';
+
   MyNavigator._internal() {
     final routes = [
       StatefulShellRoute.indexedStack(
@@ -92,6 +95,14 @@ class MyNavigator {
                 pageBuilder: (context, GoRouterState state) {
                   return getPage(
                     child: const AdminAnnouncementPage(),
+                    state: state,
+                  );
+                }),
+            GoRoute(
+                path: adminViewAttendance,
+                pageBuilder: (context, GoRouterState state) {
+                  return getPage(
+                    child: const AdminAttendancePage(),
                     state: state,
                   );
                 }),

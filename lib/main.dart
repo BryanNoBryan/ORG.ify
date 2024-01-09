@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/database/AnnouncementDB.dart';
+import 'package:midyear/database/AttendanceDB.dart';
 import 'navigation/MyNavigator.dart';
 
 void main() async {
@@ -7,6 +8,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await AnnouncementDB().initDB();
+  await AttendanceDB().initDB();
 
   runApp(const MyApp());
 }

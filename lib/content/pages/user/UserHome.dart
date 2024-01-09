@@ -3,6 +3,8 @@ import 'package:midyear/Col.dart';
 import 'package:midyear/FakeData.dart';
 import 'package:midyear/content/widgets/AnnouncementBox.dart';
 import 'package:midyear/content/widgets/GetAnnouncementsUser.dart';
+import 'package:midyear/database/AttendanceDB.dart';
+import 'package:midyear/database/data/Attendance.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
 import 'package:midyear/navigation/UserState.dart';
 import 'package:midyear/widgetAssets/Headline.dart';
@@ -69,7 +71,11 @@ class _UserHomeState extends State<UserHome> {
                 height: 20,
               ),
               GestureDetector(
-                onTap: () => (),
+                onTap: () async {
+                  await AttendanceDB().insertElem(Attendance(
+                      username: UserState.name, time: DateTime.now()));
+                  setState(() {});
+                },
                 child: Container(
                   alignment: Alignment.centerLeft,
                   child: Container(

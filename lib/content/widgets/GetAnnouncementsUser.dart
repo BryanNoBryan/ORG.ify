@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/content/widgets/AnnouncementBox.dart';
+import 'package:midyear/content/widgets/ViewAnnouncementDialog.dart';
 import 'package:midyear/database/AnnouncementDB.dart';
 import 'package:midyear/database/data/Announcements.dart';
 
@@ -24,7 +25,15 @@ class GetAnnouncementsUser extends StatelessWidget {
                   id: snapshot.data![position].id!,
                   title: snapshot.data![position].title,
                   description: snapshot.data![position].description,
-                  onPressed: () {},
+                  onPressed: () async {
+                    await showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          ViewAnnnouncementDialog(
+                        announcement: snapshot.data![position],
+                      ),
+                    );
+                  },
                 );
               });
         } else {

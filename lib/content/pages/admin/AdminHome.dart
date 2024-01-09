@@ -72,7 +72,9 @@ class _AdminHomeState extends State<AdminHome> {
                 height: 20,
               ),
               GestureDetector(
-                onTap: () => (),
+                onTap: () {
+                  MyNavigator.router.push(MyNavigator.adminViewAttendance);
+                },
                 child: Container(
                   alignment: Alignment.centerLeft,
                   child: Container(
