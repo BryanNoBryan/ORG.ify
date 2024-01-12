@@ -13,8 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // databaseFactory.deleteDatabase(join(await getDatabasesPath(), 'event.db'));
-  // databaseFactory
-  //     .deleteDatabase(join(await getDatabasesPath(), 'attendance.db'));
+  // databaseFactory.deleteDatabase(join(await getDatabasesPath(), 'signUp.db'));
 
   await AnnouncementDB().initDB();
   await AttendanceDB().initDB();

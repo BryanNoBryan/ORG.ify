@@ -8,7 +8,7 @@ import 'package:midyear/database/AnnouncementDB.dart';
 import 'package:midyear/database/AttendanceDB.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
 
-import '../../../database/data/Announcements.dart';
+import '../../../../database/data/Announcements.dart';
 
 class AdminAttendancePage extends StatefulWidget {
   const AdminAttendancePage({super.key});

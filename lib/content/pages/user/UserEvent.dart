@@ -1,8 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:midyear/Col.dart';
 import 'package:midyear/content/widgets/AddEventDialog.dart';
 import 'package:midyear/database/EventDB.dart';
+import 'package:midyear/database/SignUpDB.dart';
 import 'package:midyear/database/data/Event.dart';
+import 'package:midyear/database/data/SignUp.dart';
+import 'package:midyear/navigation/UserState.dart';
 
 class UserEvent extends StatefulWidget {
   const UserEvent({super.key});
@@ -33,26 +38,26 @@ class _UserEventState extends State<UserEvent> {
                         fontSize: 30,
                         fontWeight: FontWeight.normal),
                   ),
-                  GestureDetector(
-                    onTap: () async {
-                      await showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) => AddEventDialog(),
-                      );
-                      setState(() {});
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Col.lightBlue,
-                      ),
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () async {
+                  //     await showDialog<String>(
+                  //       context: context,
+                  //       builder: (BuildContext context) => AddEventDialog(),
+                  //     );
+                  //     setState(() {});
+                  //   },
+                  //   child: Container(
+                  //     padding: const EdgeInsets.all(8),
+                  //     decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //       color: Col.lightBlue,
+                  //     ),
+                  //     child: const Icon(
+                  //       Icons.add,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               Expanded(
@@ -76,7 +81,7 @@ class _UserEventState extends State<UserEvent> {
                                   },
                                   direction: DismissDirection.horizontal,
                                   child: Container(
-                                      height: 135,
+                                      height: 170,
                                       margin: EdgeInsets.symmetric(vertical: 5),
                                       padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(
@@ -86,18 +91,119 @@ class _UserEventState extends State<UserEvent> {
                                       child: Column(
                                         children: [
                                           Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Container(
-                                                child: Text(
-                                                  snapshot
-                                                      .data![position].title,
-                                                  style: const TextStyle(
-                                                      fontSize: 24,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.black),
-                                                ),
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Container(
+                                                    child: Text(
+                                                      snapshot.data![position]
+                                                          .title,
+                                                      style: const TextStyle(
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.black),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    child: Text(
+                                                      snapshot.data![position]
+                                                          .username,
+                                                      style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.black),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
+                                              FutureBuilder(
+                                                future:
+                                                    SignUpDB().retrieveElem(),
+                                                builder: (context, snapshot2) {
+                                                  if (snapshot2.hasData) {
+                                                    bool signedUpAlready = snapshot2
+                                                        .data!
+                                                        .where((e) =>
+                                                            e.eventId ==
+                                                                snapshot
+                                                                    .data![
+                                                                        position]
+                                                                    .eventId &&
+                                                            e.username ==
+                                                                UserState.name)
+                                                        .isNotEmpty;
+
+                                                    String testS = '';
+                                                    snapshot2.data!
+                                                        .where((e) =>
+                                                            e.eventId ==
+                                                                snapshot
+                                                                    .data![
+                                                                        position]
+                                                                    .eventId &&
+                                                            e.username ==
+                                                                UserState.name)
+                                                        .forEach((e) => testS +=
+                                                            e.username);
+
+                                                    log(testS);
+                                                    log(signedUpAlready
+                                                        .toString());
+
+                                                    return GestureDetector(
+                                                      onTap: () async {
+                                                        if (!signedUpAlready) {
+                                                          SignUp su = SignUp(
+                                                              eventId: snapshot
+                                                                  .data![
+                                                                      position]
+                                                                  .eventId!,
+                                                              username:
+                                                                  UserState
+                                                                      .name);
+                                                          SignUpDB()
+                                                              .insertElem(su);
+                                                        } else {
+                                                          SignUpDB().deleteElem(
+                                                              snapshot2.data!
+                                                                  .firstWhere((e) =>
+                                                                      e.username ==
+                                                                      UserState
+                                                                          .name)
+                                                                  .id!);
+                                                        }
+                                                        setState(() {});
+                                                      },
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color: Colors.white,
+                                                          border: Border.all(
+                                                              width: 10,
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        child: signedUpAlready
+                                                            ? Icon(Icons.close,
+                                                                size: 30)
+                                                            : Icon(Icons.add,
+                                                                size: 30),
+                                                      ),
+                                                    );
+                                                  } else {
+                                                    return const Center(
+                                                        child:
+                                                            CircularProgressIndicator());
+                                                  }
+                                                },
+                                              )
                                             ],
                                           ),
                                           Container(

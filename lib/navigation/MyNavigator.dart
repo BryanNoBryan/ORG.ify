@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:midyear/content/pages/admin/AdminAnnouncementPage.dart';
+import 'package:midyear/content/pages/admin/ViewSignUp.dart';
 import 'package:midyear/content/pages/user/UserAnnouncementPage.dart';
-import 'package:midyear/content/widgets/ViewAttendance.dart';
+import 'package:midyear/content/pages/admin/ViewAttendance.dart';
+import 'package:midyear/database/data/Event.dart';
 
 import '../content/pages/admin/AdminHome.dart';
 import 'NavigationLoginPage.dart';
@@ -64,6 +66,7 @@ class MyNavigator {
   static const String userAnnouncementPath = '/announcementPage';
 
   static const String adminViewAttendance = '/AdminViewAttendance';
+  static const String adminViewSignUp = '/AdminViewSignUp';
 
   MyNavigator._internal() {
     final routes = [
@@ -103,6 +106,14 @@ class MyNavigator {
                 pageBuilder: (context, GoRouterState state) {
                   return getPage(
                     child: const AdminAttendancePage(),
+                    state: state,
+                  );
+                }),
+            GoRoute(
+                path: adminViewSignUp,
+                pageBuilder: (context, GoRouterState state) {
+                  return getPage(
+                    child: ViewSignUp(event: state.extra as Event),
                     state: state,
                   );
                 }),

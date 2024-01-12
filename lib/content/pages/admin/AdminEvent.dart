@@ -4,7 +4,10 @@ import 'package:midyear/content/widgets/AddEventDialog.dart';
 import 'package:midyear/content/widgets/AnnouncementBox.dart';
 import 'package:midyear/content/widgets/ViewAnnouncementDialog.dart';
 import 'package:midyear/database/EventDB.dart';
+import 'package:midyear/database/SignUpDB.dart';
 import 'package:midyear/database/data/Event.dart';
+import 'package:midyear/database/data/SignUp.dart';
+import 'package:midyear/navigation/MyNavigator.dart';
 
 class AdminEvent extends StatefulWidget {
   const AdminEvent({super.key});
@@ -118,8 +121,25 @@ class _AdminEventState extends State<AdminEvent> {
                                                   ),
                                                 ],
                                               ),
-                                              Container(
-                                                child: Icon(Icons.person),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  MyNavigator.router.push(
+                                                      MyNavigator
+                                                          .adminViewSignUp,
+                                                      extra: snapshot
+                                                          .data![position]);
+                                                },
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: Colors.white,
+                                                    border: Border.all(
+                                                        width: 10,
+                                                        color: Colors.white),
+                                                  ),
+                                                  child: Icon(Icons.person,
+                                                      size: 30),
+                                                ),
                                               )
                                             ],
                                           ),
