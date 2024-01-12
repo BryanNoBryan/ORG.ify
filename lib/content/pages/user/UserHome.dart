@@ -76,23 +76,46 @@ class _UserHomeState extends State<UserHome> {
                       username: UserState.name, time: DateTime.now()));
                   setState(() {});
                 },
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Col.lightBlue,
-                    ),
-                    child: const Text(
-                      "Mark Attendance",
-                      style: TextStyle(
-                        color: Color(0xff15BE77),
-                        fontWeight: FontWeight.normal,
-                        fontSize: 24,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Col.lightBlue,
+                        ),
+                        child: const Text(
+                          "Mark Attendance",
+                          style: TextStyle(
+                            color: Color(0xff15BE77),
+                            fontWeight: FontWeight.normal,
+                            fontSize: 24,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    FutureBuilder(
+                      future: AttendanceDB().retrieveElem(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Container(
+                              child: (snapshot.data!
+                                          .where((e) =>
+                                              e.time.day == DateTime.now().day)
+                                          .length ==
+                                      0)
+                                  ? Icon(Icons.close)
+                                  : Icon(Icons.check));
+                        } else {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                      },
+                    )
+                  ],
                 ),
               ),
               const SizedBox(
