@@ -4,7 +4,9 @@ import 'package:gsheets/gsheets.dart';
 
 class GSheetsAPI {
   static const _credentials = r'''
+{
 
+}
 ''';
   static final _spreadsheetID = '1g-9Wam3AMLdoxCugd7m8ZHGsaIfv6ncpStXV1h0FplY';
   static final _gsheets = GSheets(_credentials);
@@ -29,5 +31,11 @@ class GSheetsAPI {
     } catch (e) {
       return spreadsheet.worksheetByTitle(title)!;
     }
+  }
+
+  static Future insert(List<Map<String, dynamic>> rowList) async {
+    if (_userSheet == null) return;
+
+    _userSheet!.values.map.appendRows(rowList);
   }
 }

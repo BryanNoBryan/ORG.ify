@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/database/EventDB.dart';
 import 'package:midyear/database/data/Event.dart';
+import 'package:midyear/gsheets/GSheetsAPI.dart';
 import 'package:midyear/navigation/UserState.dart';
 import 'package:midyear/widgetAssets/Input.dart';
 
@@ -80,6 +81,16 @@ class _AddEventDialogState extends State<AddEventDialog> {
                           title: title.text,
                           description: description.text);
                       await EventDB().insertElem(event);
+
+                      List<Map<String, dynamic>> data = [
+                        {
+                          'Title': title.text,
+                          'Username': UserState.name,
+                          'Description': description.text
+                        }
+                      ];
+                      await GSheetsAPI.insert(data);
+
                       Navigator.of(context).pop();
                     }),
                 SimpleBtn1(
