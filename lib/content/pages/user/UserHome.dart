@@ -72,9 +72,16 @@ class _UserHomeState extends State<UserHome> {
               ),
               GestureDetector(
                 onTap: () async {
-                  await AttendanceDB().insertElem(Attendance(
-                      username: UserState.name, time: DateTime.now()));
-                  setState(() {});
+                  bool alreadyTookAttendance =
+                      (await AttendanceDB().retrieveElem())
+                          .where((e) => e.time.day == DateTime.now().day)
+                          .isNotEmpty;
+
+                  if (!alreadyTookAttendance) {
+                    await AttendanceDB().insertElem(Attendance(
+                        username: UserState.name, time: DateTime.now()));
+                    setState(() {});
+                  }
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -103,10 +110,9 @@ class _UserHomeState extends State<UserHome> {
                         if (snapshot.hasData) {
                           return Container(
                               child: (snapshot.data!
-                                          .where((e) =>
-                                              e.time.day == DateTime.now().day)
-                                          .length ==
-                                      0)
+                                      .where((e) =>
+                                          e.time.day == DateTime.now().day)
+                                      .isEmpty)
                                   ? Icon(Icons.close)
                                   : Icon(Icons.check));
                         } else {
