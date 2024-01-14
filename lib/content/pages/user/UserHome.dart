@@ -107,8 +107,8 @@ class _UserHomeState extends State<UserHome> {
                                               e.time.day == DateTime.now().day)
                                           .length ==
                                       0)
-                                  ? Icon(Icons.close)
-                                  : Icon(Icons.check));
+                                  ? const Icon(Icons.close)
+                                  : const Icon(Icons.check));
                         } else {
                           return const Center(
                               child: CircularProgressIndicator());
@@ -131,7 +131,7 @@ class _UserHomeState extends State<UserHome> {
               const Divider(
                 thickness: 5,
               ),
-              GetAnnouncementsUser(),
+              const GetAnnouncementsUser(),
             ],
           ),
         ),

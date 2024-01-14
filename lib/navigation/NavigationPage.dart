@@ -1,8 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
-
-import 'UserState.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({
@@ -20,17 +20,6 @@ class _NavigationPageState extends State<NavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('amogus inc.'),
-      //   actions: [
-      //     IconButton(
-      //       icon: const Icon(Icons.account_circle, size: 40),
-      //       onPressed: () {
-      //         MyNavigator.loginScreen();
-      //       },
-      //     ),
-      //   ],
-      // ),
       body: SafeArea(
         child: widget.child,
       ),
@@ -40,14 +29,17 @@ class _NavigationPageState extends State<NavigationPage> {
         onTap: (index) {
           switch (index) {
             case 0:
-              MyNavigator.goHome(initial: index == widget.child.currentIndex);
+              log((index == widget.child.currentIndex).toString());
+              MyNavigator.goHome(
+                  initial: index == MyNavigator.navigationbarIndex);
               break;
             case 1:
-              MyNavigator.goEvent(initial: index == widget.child.currentIndex);
+              MyNavigator.goEvent(
+                  initial: index == MyNavigator.navigationbarIndex);
               break;
             case 2:
               MyNavigator.goProfile(
-                  initial: index == widget.child.currentIndex);
+                  initial: index == MyNavigator.navigationbarIndex);
               break;
           }
           setState(() {});

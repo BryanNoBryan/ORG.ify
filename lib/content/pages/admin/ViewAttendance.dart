@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/Col.dart';
-import 'package:midyear/FakeData.dart';
-import 'package:midyear/content/widgets/GetAnnouncementsAdmin.dart';
-import 'package:midyear/content/widgets/AddAnnnouncementDialog.dart';
-import 'package:midyear/content/widgets/AnnouncementBox.dart';
-import 'package:midyear/database/AnnouncementDB.dart';
 import 'package:midyear/database/AttendanceDB.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
-
-import '../../../../database/data/Announcements.dart';
 
 class AdminAttendancePage extends StatefulWidget {
   const AdminAttendancePage({super.key});
@@ -35,10 +28,10 @@ class _AttendancePageState extends State<AdminAttendancePage> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Attendance',
                   style: TextStyle(
                       color: Colors.black,
@@ -56,7 +49,7 @@ class _AttendancePageState extends State<AdminAttendancePage> {
                         itemCount: snapshot.data?.length,
                         itemBuilder: (context, position) {
                           return Container(
-                              margin: EdgeInsets.symmetric(vertical: 5),
+                              margin: const EdgeInsets.symmetric(vertical: 5),
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),

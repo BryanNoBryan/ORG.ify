@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
               curve: Curves.easeInCirc,
               heightFactor: 2.0,
               widthFactor: 1.0,
-              duration: Duration(seconds: 3),
+              duration: const Duration(seconds: 3),
               child: Center(
                   child: Container(
                 padding: const EdgeInsets.all(50),
@@ -127,7 +127,6 @@ class _LoginPageState extends State<LoginPage> {
                   loginAttempt();
                   setState(() {});
                 },
-                child: const Text('Log In', style: TextStyle(fontSize: 30)),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
@@ -136,6 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 140, vertical: 10),
                 ),
+                child: const Text('Log In', style: TextStyle(fontSize: 30)),
               ),
             ),
             // TextButton(

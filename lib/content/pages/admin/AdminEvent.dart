@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/Col.dart';
 import 'package:midyear/content/widgets/AddEventDialog.dart';
-import 'package:midyear/content/widgets/AnnouncementBox.dart';
-import 'package:midyear/content/widgets/ViewAnnouncementDialog.dart';
 import 'package:midyear/database/EventDB.dart';
-import 'package:midyear/database/SignUpDB.dart';
 import 'package:midyear/database/data/Event.dart';
-import 'package:midyear/database/data/SignUp.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
 
 class AdminEvent extends StatefulWidget {
@@ -25,15 +21,15 @@ class _AdminEventState extends State<AdminEvent> {
           scrolledUnderElevation: 0,
         ),
         body: Container(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Events',
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.black,
                         fontSize: 30,
                         fontWeight: FontWeight.normal),
@@ -42,7 +38,8 @@ class _AdminEventState extends State<AdminEvent> {
                     onTap: () async {
                       await showDialog<String>(
                         context: context,
-                        builder: (BuildContext context) => AddEventDialog(),
+                        builder: (BuildContext context) =>
+                            const AddEventDialog(),
                       );
                       setState(() {});
                     },
@@ -82,7 +79,8 @@ class _AdminEventState extends State<AdminEvent> {
                                   direction: DismissDirection.horizontal,
                                   child: Container(
                                       height: 170,
-                                      margin: EdgeInsets.symmetric(vertical: 5),
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 5),
                                       padding: const EdgeInsets.all(8),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
@@ -97,27 +95,23 @@ class _AdminEventState extends State<AdminEvent> {
                                               Column(
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
-                                                  Container(
-                                                    child: Text(
-                                                      snapshot.data![position]
-                                                          .title,
-                                                      style: const TextStyle(
-                                                          fontSize: 24,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.black),
-                                                    ),
+                                                  Text(
+                                                    snapshot
+                                                        .data![position].title,
+                                                    style: const TextStyle(
+                                                        fontSize: 24,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
                                                   ),
-                                                  Container(
-                                                    child: Text(
-                                                      snapshot.data![position]
-                                                          .username,
-                                                      style: const TextStyle(
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.black),
-                                                    ),
+                                                  Text(
+                                                    snapshot.data![position]
+                                                        .username,
+                                                    style: const TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black),
                                                   ),
                                                 ],
                                               ),
@@ -137,7 +131,8 @@ class _AdminEventState extends State<AdminEvent> {
                                                         width: 10,
                                                         color: Colors.white),
                                                   ),
-                                                  child: Icon(Icons.person,
+                                                  child: const Icon(
+                                                      Icons.person,
                                                       size: 30),
                                                 ),
                                               )

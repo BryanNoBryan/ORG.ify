@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midyear/Col.dart';
-import 'package:midyear/FakeData.dart';
-import 'package:midyear/content/widgets/AnnouncementBox.dart';
 import 'package:midyear/content/widgets/GetAnnouncementsUser.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
-import 'package:midyear/widgetAssets/Headline.dart';
-import 'package:midyear/content/widgets/AddAnnnouncementDialog.dart';
 
 class AnnouncementPage extends StatefulWidget {
   const AnnouncementPage({super.key});

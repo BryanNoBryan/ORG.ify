@@ -15,7 +15,7 @@ class EventDB {
     return _databaseHelper;
   }
 
-  static final String name = 'event';
+  static const String name = 'event';
 
   Future<void> initDB() async {
     String path = await getDatabasesPath();

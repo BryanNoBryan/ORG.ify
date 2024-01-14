@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:midyear/FakeData.dart';
-import 'package:midyear/database/AnnouncementDB.dart';
 import 'package:midyear/database/data/Announcements.dart';
-import 'package:midyear/navigation/MyNavigator.dart';
-import 'package:midyear/widgetAssets/Input.dart';
 
 class ViewAnnnouncementDialog extends StatefulWidget {
   const ViewAnnnouncementDialog({required this.announcement, super.key});
@@ -44,7 +39,7 @@ class _ViewAnnnouncementDialogState extends State<ViewAnnnouncementDialog> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(widget.announcement.title,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.bold)),
@@ -59,7 +54,7 @@ class _ViewAnnnouncementDialogState extends State<ViewAnnnouncementDialog> {
                     BoxShadow(color: primaryColor, spreadRadius: 1),
                   ],
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextField(

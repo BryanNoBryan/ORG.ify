@@ -3,8 +3,6 @@ import 'package:midyear/database/AnnouncementDB.dart';
 import 'package:midyear/database/AttendanceDB.dart';
 import 'package:midyear/database/EventDB.dart';
 import 'package:midyear/database/SignUpDB.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 import 'navigation/MyNavigator.dart';
 
 void main() async {

@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/Col.dart';
-import 'package:midyear/FakeData.dart';
 import 'package:midyear/content/widgets/GetAnnouncementsAdmin.dart';
 import 'package:midyear/content/widgets/AddAnnnouncementDialog.dart';
-import 'package:midyear/content/widgets/AnnouncementBox.dart';
-import 'package:midyear/database/AnnouncementDB.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
-
-import '../../../database/data/Announcements.dart';
 
 class AdminAnnouncementPage extends StatefulWidget {
   const AdminAnnouncementPage({super.key});
@@ -56,7 +51,7 @@ class _AnnouncementPageState extends State<AdminAnnouncementPage> {
                       await showDialog<String>(
                         context: context,
                         builder: (BuildContext context) =>
-                            AddAnnnouncementDialog(),
+                            const AddAnnnouncementDialog(),
                       );
                       setState(() {});
                     },
@@ -64,7 +59,7 @@ class _AnnouncementPageState extends State<AdminAnnouncementPage> {
                 ),
               ],
             ),
-            Expanded(
+            const Expanded(
               child: GetAnnouncementsAdmin(),
             ),
           ],
