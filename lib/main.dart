@@ -3,6 +3,7 @@ import 'package:midyear/database/AnnouncementDB.dart';
 import 'package:midyear/database/AttendanceDB.dart';
 import 'package:midyear/database/EventDB.dart';
 import 'package:midyear/database/SignUpDB.dart';
+import 'package:midyear/gsheets/GSheetsAPI.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'navigation/MyNavigator.dart';
@@ -19,6 +20,8 @@ void main() async {
   await AttendanceDB().initDB();
   await EventDB().initDB();
   await SignUpDB().initDB();
+
+  await GSheetsAPI.init();
 
   runApp(const MyApp());
 }

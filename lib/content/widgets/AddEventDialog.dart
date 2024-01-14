@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:midyear/FakeData.dart';
-import 'package:midyear/database/AnnouncementDB.dart';
 import 'package:midyear/database/EventDB.dart';
-import 'package:midyear/database/data/Announcements.dart';
 import 'package:midyear/database/data/Event.dart';
 import 'package:midyear/navigation/UserState.dart';
 import 'package:midyear/widgetAssets/Input.dart';
 
 class AddEventDialog extends StatefulWidget {
-  const AddEventDialog({Key? key}) : super(key: key);
+  const AddEventDialog({super.key});
 
   @override
   State<AddEventDialog> createState() => _AddEventDialogState();
@@ -50,7 +47,7 @@ class _AddEventDialogState extends State<AddEventDialog> {
               height: 3.5,
             ),
             Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Input(title: 'Title', controller: title)),
             Container(
                 decoration: BoxDecoration(
@@ -60,9 +57,9 @@ class _AddEventDialogState extends State<AddEventDialog> {
                     BoxShadow(color: primaryColor, spreadRadius: 1),
                   ],
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: TextField(
                     controller: description,
                     minLines: 4,
@@ -109,8 +106,7 @@ class SimpleBtn1 extends StatelessWidget {
       {required this.text,
       required this.onPressed,
       this.invertedColors = false,
-      Key? key})
-      : super(key: key);
+      super.key});
   final primaryColor = const Color(0xff4338CA);
   final accentColor = const Color(0xffffffff);
 

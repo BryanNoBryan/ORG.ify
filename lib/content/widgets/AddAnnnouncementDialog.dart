@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:midyear/FakeData.dart';
 import 'package:midyear/database/AnnouncementDB.dart';
 import 'package:midyear/database/data/Announcements.dart';
-import 'package:midyear/navigation/MyNavigator.dart';
 import 'package:midyear/widgetAssets/Input.dart';
 
 class AddAnnnouncementDialog extends StatefulWidget {
-  const AddAnnnouncementDialog({Key? key}) : super(key: key);
+  const AddAnnnouncementDialog({super.key});
 
   @override
   State<AddAnnnouncementDialog> createState() => _AddAnnnouncementDialogState();
@@ -49,7 +47,7 @@ class _AddAnnnouncementDialogState extends State<AddAnnnouncementDialog> {
               height: 3.5,
             ),
             Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Input(title: 'Title', controller: title)),
             Container(
                 decoration: BoxDecoration(
@@ -59,9 +57,9 @@ class _AddAnnnouncementDialogState extends State<AddAnnnouncementDialog> {
                     BoxShadow(color: primaryColor, spreadRadius: 1),
                   ],
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: TextField(
                     controller: description,
                     minLines: 4,

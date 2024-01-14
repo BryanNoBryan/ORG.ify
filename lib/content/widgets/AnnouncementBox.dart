@@ -19,7 +19,7 @@ class AnnouncementBox extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-          margin: EdgeInsets.symmetric(vertical: 5),
+          margin: const EdgeInsets.symmetric(vertical: 5),
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),

@@ -73,99 +73,117 @@ class MyNavigator {
       StatefulShellRoute.indexedStack(
         parentNavigatorKey: parentNavigatorKey,
         branches: [
-          StatefulShellBranch(navigatorKey: loginNavigatorKey, routes: [
-            GoRoute(
-                path: loginPath,
-                pageBuilder: (context, GoRouterState state) {
-                  return getPage(
-                    child: const LoginPage(),
-                    state: state,
-                  );
-                }),
-          ]),
-          StatefulShellBranch(navigatorKey: adminHomeNavigatorKey, routes: [
-            GoRoute(
-              path: adminHomePath,
-              pageBuilder: (context, GoRouterState state) {
-                return getPage(
-                  child: const AdminHome(),
-                  state: state,
-                );
-              },
-            ),
-            GoRoute(
-                path: adminAnnouncementPath,
-                pageBuilder: (context, GoRouterState state) {
-                  return getPage(
-                    child: const AdminAnnouncementPage(),
-                    state: state,
-                  );
-                }),
-            GoRoute(
-                path: adminViewAttendance,
-                pageBuilder: (context, GoRouterState state) {
-                  return getPage(
-                    child: const AdminAttendancePage(),
-                    state: state,
-                  );
-                }),
-            GoRoute(
-                path: adminViewSignUp,
-                pageBuilder: (context, GoRouterState state) {
-                  return getPage(
-                    child: ViewSignUp(event: state.extra as Event),
-                    state: state,
-                  );
-                }),
-          ]),
-          StatefulShellBranch(navigatorKey: userHomeNavigatorKey, routes: [
-            GoRoute(
-                path: userHomePath,
-                pageBuilder: (context, GoRouterState state) {
-                  return getPage(
-                    child: const UserHome(),
-                    state: state,
-                  );
-                }),
-            GoRoute(
-                path: userAnnouncementPath,
-                pageBuilder: (context, GoRouterState state) {
-                  return getPage(
-                    child: const AnnouncementPage(),
-                    state: state,
-                  );
-                }),
-          ]),
-          StatefulShellBranch(navigatorKey: adminEventNavigatorKey, routes: [
-            GoRoute(
-                path: adminEventPath,
-                pageBuilder: (context, GoRouterState state) {
-                  return getPage(
-                    child: const AdminEvent(),
-                    state: state,
-                  );
-                }),
-          ]),
-          StatefulShellBranch(navigatorKey: userEventNavigatorKey, routes: [
-            GoRoute(
-                path: userEventPath,
-                pageBuilder: (context, GoRouterState state) {
-                  return getPage(
-                    child: const UserEvent(),
-                    state: state,
-                  );
-                }),
-          ]),
-          StatefulShellBranch(navigatorKey: profileNavigatorKey, routes: [
-            GoRoute(
-                path: profilePath,
-                pageBuilder: (context, GoRouterState state) {
-                  return getPage(
-                    child: const Profile(),
-                    state: state,
-                  );
-                }),
-          ]),
+          StatefulShellBranch(
+              navigatorKey: loginNavigatorKey,
+              initialLocation: loginPath,
+              routes: [
+                GoRoute(
+                    path: loginPath,
+                    pageBuilder: (context, GoRouterState state) {
+                      return getPage(
+                        child: const LoginPage(),
+                        state: state,
+                      );
+                    }),
+              ]),
+          StatefulShellBranch(
+              navigatorKey: adminHomeNavigatorKey,
+              initialLocation: adminHomePath,
+              routes: [
+                GoRoute(
+                  path: adminHomePath,
+                  pageBuilder: (context, GoRouterState state) {
+                    return getPage(
+                      child: const AdminHome(),
+                      state: state,
+                    );
+                  },
+                ),
+                GoRoute(
+                    path: adminAnnouncementPath,
+                    pageBuilder: (context, GoRouterState state) {
+                      return getPage(
+                        child: const AdminAnnouncementPage(),
+                        state: state,
+                      );
+                    }),
+                GoRoute(
+                    path: adminViewAttendance,
+                    pageBuilder: (context, GoRouterState state) {
+                      return getPage(
+                        child: const AdminAttendancePage(),
+                        state: state,
+                      );
+                    }),
+                GoRoute(
+                    path: adminViewSignUp,
+                    pageBuilder: (context, GoRouterState state) {
+                      return getPage(
+                        child: ViewSignUp(event: state.extra as Event),
+                        state: state,
+                      );
+                    }),
+              ]),
+          StatefulShellBranch(
+              navigatorKey: userHomeNavigatorKey,
+              initialLocation: userHomePath,
+              routes: [
+                GoRoute(
+                    path: userHomePath,
+                    pageBuilder: (context, GoRouterState state) {
+                      return getPage(
+                        child: const UserHome(),
+                        state: state,
+                      );
+                    }),
+                GoRoute(
+                    path: userAnnouncementPath,
+                    pageBuilder: (context, GoRouterState state) {
+                      return getPage(
+                        child: const AnnouncementPage(),
+                        state: state,
+                      );
+                    }),
+              ]),
+          StatefulShellBranch(
+              navigatorKey: adminEventNavigatorKey,
+              initialLocation: adminEventPath,
+              routes: [
+                GoRoute(
+                    path: adminEventPath,
+                    pageBuilder: (context, GoRouterState state) {
+                      return getPage(
+                        child: const AdminEvent(),
+                        state: state,
+                      );
+                    }),
+              ]),
+          StatefulShellBranch(
+              navigatorKey: userEventNavigatorKey,
+              initialLocation: userEventPath,
+              routes: [
+                GoRoute(
+                    path: userEventPath,
+                    pageBuilder: (context, GoRouterState state) {
+                      return getPage(
+                        child: const UserEvent(),
+                        state: state,
+                      );
+                    }),
+              ]),
+          StatefulShellBranch(
+              navigatorKey: profileNavigatorKey,
+              initialLocation: profilePath,
+              routes: [
+                GoRoute(
+                    path: profilePath,
+                    pageBuilder: (context, GoRouterState state) {
+                      return getPage(
+                        child: const Profile(),
+                        state: state,
+                      );
+                    }),
+              ]),
         ],
         pageBuilder: (
           BuildContext context,
@@ -211,6 +229,7 @@ class MyNavigator {
     switch (UserState.perm) {
       case 1:
         log('admined');
+        log(initial.toString());
         _navigationShell.goBranch(1, initialLocation: initial ?? false);
         break;
       case 0:

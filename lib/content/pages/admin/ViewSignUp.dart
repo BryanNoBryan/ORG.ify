@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:midyear/Col.dart';
-import 'package:midyear/FakeData.dart';
-import 'package:midyear/content/widgets/GetAnnouncementsAdmin.dart';
-import 'package:midyear/content/widgets/AddAnnnouncementDialog.dart';
-import 'package:midyear/content/widgets/AnnouncementBox.dart';
-import 'package:midyear/database/AnnouncementDB.dart';
-import 'package:midyear/database/AttendanceDB.dart';
 import 'package:midyear/database/SignUpDB.dart';
 import 'package:midyear/database/data/Event.dart';
 import 'package:midyear/database/data/SignUp.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
-
-import '../../../../database/data/Announcements.dart';
 
 class ViewSignUp extends StatefulWidget {
   const ViewSignUp({required this.event, super.key});
@@ -45,7 +37,7 @@ class _AttendancePageState extends State<ViewSignUp> {
               children: [
                 Text(
                   'Signed Up for ${widget.event.title}',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 30,
                       fontWeight: FontWeight.normal),
@@ -66,7 +58,7 @@ class _AttendancePageState extends State<ViewSignUp> {
                         itemCount: list.length,
                         itemBuilder: (context, position) {
                           return Container(
-                              margin: EdgeInsets.symmetric(vertical: 5),
+                              margin: const EdgeInsets.symmetric(vertical: 5),
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),

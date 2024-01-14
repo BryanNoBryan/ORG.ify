@@ -16,7 +16,7 @@ class AnnouncementDB {
     return _databaseHelper;
   }
 
-  static final String name = 'announcement';
+  static const String name = 'announcement';
 
   Future<void> initDB() async {
     String path = await getDatabasesPath();

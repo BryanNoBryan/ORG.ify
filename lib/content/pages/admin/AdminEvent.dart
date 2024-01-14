@@ -5,9 +5,7 @@ import 'package:midyear/content/widgets/AnnouncementBox.dart';
 import 'package:midyear/content/widgets/ViewAnnouncementDialog.dart';
 import 'package:midyear/content/widgets/ViewEventDialog.dart';
 import 'package:midyear/database/EventDB.dart';
-import 'package:midyear/database/SignUpDB.dart';
 import 'package:midyear/database/data/Event.dart';
-import 'package:midyear/database/data/SignUp.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
 
 class AdminEvent extends StatefulWidget {
@@ -26,15 +24,15 @@ class _AdminEventState extends State<AdminEvent> {
           scrolledUnderElevation: 0,
         ),
         body: Container(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Events',
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.black,
                         fontSize: 30,
                         fontWeight: FontWeight.normal),
@@ -43,7 +41,8 @@ class _AdminEventState extends State<AdminEvent> {
                     onTap: () async {
                       await showDialog<String>(
                         context: context,
-                        builder: (BuildContext context) => AddEventDialog(),
+                        builder: (BuildContext context) =>
+                            const AddEventDialog(),
                       );
                       setState(() {});
                     },

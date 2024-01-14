@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:midyear/Col.dart';
-import 'package:midyear/FakeData.dart';
-import 'package:midyear/content/widgets/AnnouncementBox.dart';
 import 'package:midyear/content/widgets/GetAnnouncementsAdmin.dart';
-import 'package:midyear/database/AnnouncementDB.dart';
-import 'package:midyear/database/data/Announcements.dart';
 import 'package:midyear/navigation/MyNavigator.dart';
 import 'package:midyear/navigation/UserState.dart';
 import 'package:midyear/widgetAssets/Headline.dart';
@@ -118,7 +113,7 @@ class _AdminHomeState extends State<AdminHome> {
               //     onPressed: () => (),
               //   ),
               // ),
-              GetAnnouncementsAdmin(),
+              const GetAnnouncementsAdmin(),
             ],
           ),
         ),
