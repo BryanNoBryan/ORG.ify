@@ -20,11 +20,11 @@ class FakeData {
     }
   }
 
-  static List<List<String>> announcements = [
-    ['Winter Break', '6 days off!'],
-    ['Fall Break', '1 days off!'],
-    ['Summer Break', '54 days off!'],
-    ['Spring Break', '5 days off!'],
-    ['Snow Day', '15 days off!'],
-  ];
+  // static List<List<String>> announcements = [
+  //   ['Winter Break', '6 days off!'],
+  //   ['Fall Break', '1 days off!'],
+  //   ['Summer Break', '54 days off!'],
+  //   ['Spring Break', '5 days off!'],
+  //   ['Snow Day', '15 days off!'],
+  // ];
 }

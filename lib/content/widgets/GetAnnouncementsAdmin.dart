@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:midyear/content/widgets/AnnouncementBox.dart';
 import 'package:midyear/content/widgets/ViewAnnouncementDialog.dart';
@@ -20,7 +22,10 @@ class _GetAnnouncementsAdminState extends State<GetAnnouncementsAdmin> {
       future: AnnouncementDB().retrieveElem(),
       builder:
           (BuildContext context, AsyncSnapshot<List<Announcement>> snapshot) {
-        if (snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.hasData) {
+          log('built');
+
           return ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -28,8 +33,9 @@ class _GetAnnouncementsAdminState extends State<GetAnnouncementsAdmin> {
               itemBuilder: (context, position) {
                 return Dismissible(
                   key: UniqueKey(),
-                  onDismissed: (direction) {
-                    AnnouncementDB().deleteElem(snapshot.data![position].id!);
+                  onDismissed: (direction) async {
+                    await AnnouncementDB()
+                        .deleteElem(snapshot.data![position].id!);
                     setState(() {});
                   },
                   direction: DismissDirection.horizontal,

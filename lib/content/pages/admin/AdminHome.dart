@@ -113,7 +113,9 @@ class _AdminHomeState extends State<AdminHome> {
               //     onPressed: () => (),
               //   ),
               // ),
-              const GetAnnouncementsAdmin(),
+
+              //DO NOT MAKE THIS CONST!!!!!!!
+              GetAnnouncementsAdmin(),
             ],
           ),
         ),

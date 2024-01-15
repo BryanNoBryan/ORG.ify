@@ -66,7 +66,7 @@ class _AttendancePageState extends State<ViewSignUp> {
                               ),
                               child: Column(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: double.infinity,
                                     child: Text(
                                       list[position].username,

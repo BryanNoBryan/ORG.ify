@@ -137,7 +137,9 @@ class _UserHomeState extends State<UserHome> {
               const Divider(
                 thickness: 5,
               ),
-              const GetAnnouncementsUser(),
+
+              //DO NOT MAKE THIS CONST!!!!!!!
+              GetAnnouncementsUser(),
             ],
           ),
         ),

@@ -39,7 +39,7 @@ class _AddEventDialogState extends State<AddEventDialog> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("New Announcement",
+            const Text("Event",
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,

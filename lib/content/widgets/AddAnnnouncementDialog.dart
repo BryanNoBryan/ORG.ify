@@ -80,7 +80,7 @@ class _AddAnnnouncementDialogState extends State<AddAnnnouncementDialog> {
                       Announcement ann = Announcement(
                           title: title.text, description: description.text);
                       await AnnouncementDB().insertElem(ann);
-                      Navigator.of(context).pop();
+                      navigatorPopAvoidingAsync();
                     }),
                 SimpleBtn1(
                   text: "Cancel",
@@ -95,6 +95,12 @@ class _AddAnnnouncementDialogState extends State<AddAnnnouncementDialog> {
         ),
       ),
     );
+  }
+
+  void navigatorPopAvoidingAsync() {
+    Navigator.of(context).pop();
+    setState(() {});
+    super.setState(() {});
   }
 }
 

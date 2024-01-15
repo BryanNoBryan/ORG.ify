@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:midyear/Col.dart';
 import 'package:midyear/content/widgets/GetAnnouncementsAdmin.dart';
@@ -59,7 +61,11 @@ class _AnnouncementPageState extends State<AdminAnnouncementPage> {
                 ),
               ],
             ),
-            const Expanded(
+
+            //!!!!!!!IMPORTANT!!!!!!!!!!!
+            // LESSON LEARNED - DO NOOOOOOT MAKE THIS CONST
+            // THIS WILL CAUSE THE FUTUREBUILDER TO NOT UPDATE
+            Expanded(
               child: GetAnnouncementsAdmin(),
             ),
           ],

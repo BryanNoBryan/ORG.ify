@@ -18,8 +18,8 @@ class _AttendancePageState extends State<AdminAttendancePage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            MyNavigator.router.pop();
             setState(() {});
+            MyNavigator.router.pop();
           },
         ),
       ),

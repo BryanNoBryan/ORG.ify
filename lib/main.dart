@@ -7,6 +7,7 @@ import 'package:midyear/gsheets/GSheetsAPI.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'navigation/MyNavigator.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   MyNavigator();
@@ -32,18 +33,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: ThemeData(fontFamily: 'OpenSans'),
       debugShowCheckedModeBanner: false,
       routerConfig: MyNavigator.router,
-      title: 'Midyear App',
-      // theme: ThemeData(
-      //   primarySwatch: Colors.blue,
-      // ),
-
-      //INDEPENDENT SHELLS FOR EACH BOT NAV BAR + LOGIN CREATED
-      //NOW ADD ADDITIONAL LOGIC ON TOP
-      //CHANGE getPage method to take additional parameter(int -> want login or main pages) SO ADDITIONAL CLASS LIKE NavigationPage but LoginPage, or remove the appbar and bottomnavbar entirely(nah we don't want copy 6 times)
-      //ADD LOGIC THAT to know if Admin or User at start, and choose between User and Admin pages thru that parameter, probably use a map
-      //NO BETTER TO DO A SINGLETON CLASS THAT HOLDS IF USER VS ADMIN DATA
+      title: 'ORG.ify',
     );
   }
 }
